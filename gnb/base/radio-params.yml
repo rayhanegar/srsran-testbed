@@ -1,0 +1,27 @@
+cell_cfg:
+  common_scs: 15                        # Required UINT (15). Sets the subcarrier spacing in KHz to be used by the cell. Supported: [15, 30].
+  channel_bandwidth_MHz: 20             # Required UINT (20). Sets the channel Bandwidth in MHz, the number of PRBs will be derived from this. Supported: [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100].
+  nof_antennas_dl: 1                    # Optional UINT (1). Sets the number of antennas for downlink transmission. Supported: [1, 2, 4].
+  nof_antennas_ul: 1                    # Optional UINT (1). Sets the number of antennas for uplink transmission. Supported: [1, 2, 4].
+  q_rx_lev_min: -70                     # Optional INT (-70). Sets the required minimum received RSRP level for cell selection/re-selection, in dBm. Supported: [-70 - -22].
+  q_qual_min: -20                       # Optional INT (-20). Sets the required minimum received RSRQ level for cell selection/re-selection, in dB. Supported: [-43 - -12].
+  pcg_p_nr_fr1: 10                      # Optional INT (10). Sets the maximum total TX power to be used by the UE in this NR cell group across in FR1. Supported: [-30 - +23].
+  
+  ssb:
+    ssb_period: 10                          # Optional UINT (10). Sets the period of SSB scheduling in milliseconds. Supported: [5, 10, 20].
+    ssb_block_power_dbm: -16                # Optional INT (-16). Sets the SS PBCH block power in dBm. Supported: [-60 - +50].
+    pss_to_sss_epre_db: 0                   # Optional UINT (0). Sets the Synchronization Signal Block Primary Synchronization Signal to Secondary Synchronization Signal Energy Per Resource Element ratio in dB. Supported: [0, 3].
+
+  pdcch:
+    # Common: control information for all UEs in the cell
+    common:             
+      ss1_n_candidates: [0, 0, 1, 0, 0]         # Optional UINT ([0, 0, 1, 0, 0]). Sets the number of PDCCH candidates per aggregation level for SearchSpace#1. Supported: any 5 value array containing the following UINT values [0, 1, 2, 3, 4, 5, 6, 7, 8].
+      ss0_index: 0                              # Optional UINT (0). Sets the SearchSpace#0 index. Supported: [0 - 15].
+    dedicated:
+      coreset1_rb_start: 1                      # Optional INT (0). Sets the starting common resource block (CRB) number for CORESET 1, relative to CRB0. Supported: [0 - 275].
+      coreset1_l_crb:                           # Optional INT (Across entire BW of cell). Sets the length of CORESET 1 in number of CRBs. Supported: [0 - 275].
+      coreset1_duration:                        # Optional INT (Max(2, Nof. CORESET#0 symbols)). Sets the duration of CORESET 1 in number of OFDM symbols. Supported: [1 - 2].
+      ss2_n_candidates: [0, 2, 4, 0, 0]         # Optional UINT ([0, 2, 4, 0, 0]). Sets the number of PDCCH candidates per aggregation level for SearchSpace#2. Supported: any 5 value array containing the following UINT values [0, 1, 2, 3, 4, 5, 6, 7, 8].
+      dci_format_0_1_and_1_1: true              # Optional BOOLEAN (true). Sets whether to use non-fallback or fallback DCI format in UE SearchSpace#2. Supported: [false, true].
+      ss2_type: ue_dedicated                    # Optional TEXT (ue_dedicated). Sets the SearchSpace type for UE dedicated SearchSpace#2. Supported: [common, ue_dedicated].
+      al_cqi_offset: 0                          # Optional FLOAT (0). Offset to apply to the CQI value used in the PDCCH aggregation level calculation. Format: [-15 - 15]

@@ -1,0 +1,29 @@
+qos:                                # Optional TEXT. Configures RLC and PDCP radio bearers on a per 5QI basis. This can only be set via the configuration file. Each list entry should begin with "-".
+
+srbs:                               # Optional TEXT. Configures signaling radio bearers. Each list entry should begin with "-".
+
+du:
+  warn_on_drop: false                  # Optional BOOLEAN (false). Enables the option to log a warning for dropped packets in F1-U, RLC and MAC due to full queues. Supported: [false, true]. 
+
+cell_cfg:
+  sib:
+    si_window_length: 160                   # Optional UINT (160). Sets the length of the SI scheduling window, in slots. It must be always shorter or equal to the period of the SI message. Supported: [5,10,20,40,80,160,320,640,1280].
+    si_sched_info:                          # Optional TEXT. Configures the scheduling for each of the SI-messages broadcast by the gNB.
+    t300: 1000                              # Optional UINT (1000). Sets the RRC Connection Establishment timer in ms. The timer starts upon transmission of RRCSetupRequest. Supported: [100,200,300,400,600,1000,1500,2000].
+    t301: 1000                              # Optional UINT (1000). Sets the RRC Connection Re-establishment timer in ms. The timer starts upon transmission of RRCReestablishmentRequest. Supported: [100,200,300,400,600,1000,1500,2000].
+    t310: 1000                              # Optional UINT (1000). Sets the Out-of-sync timer in ms. The timer starts upon detecting physical layer problems for the SpCell i.e. upon receiving N310 consecutive out-of-sync indications from lower layers. Supported: [0,50,100,200,500,1000,2000].
+    n310: 1                                 # Optional UINT (1). Sets the Out-of-sync counter. The counter is increased upon reception of "out-of-sync" from lower layer while the timer T310 is stopped. Starts the timer T310, when configured value is reached. Supported: [1,2,3,4,6,8,10,20].
+    t311: 3000                              # Optional UINT (3000). Sets the RRC Connection Re-establishment procedure timer in ms. The timer starts upon initiating the RRC connection re-establishment procedure. Supported: [1000,3000,5000,10000,15000,20000,30000].
+    n311: 1                                 # Optional UINT (1). Sets the In-sync counter. The counter is increased upon reception of the "in-sync" from lower layer while the timer T310 is running. Stops the timer T310, when configured value is reached.Supported: [1,2,3,4,5,6,8,10].
+    t319: 1000                              # Optional UINT (1000). Sets the RRC Connection Resume timer in ms. The timer starts upon transmission of RRCResumeRequest or RRCResumeRequest1. Supported: [100,200,300,400,600,1000,1500,2000].
+    etws: 
+      message_id: 4356                        # Optional UINT (4356). Sets the ETWS message ID. Supported: [0 - 65535].
+      serial_num: 1288                        # Optional UINT (1228). Sets the ETWS serial number. Supported: [0 - 65535].
+      warning_type: 2432                      # Optional UINT (2432). Sets the ETWS warning type. Supported: [0 - 65535].
+      data_coding_scheme: 0                   # Optional UINT (0). Sets the ETWS data coding scheme. Supported: [0 - 255].
+      warning_message:                        # Optional TEXT. Sets the ETWS warning message. Max length and character support depends on the chosen coding scheme. 
+    cmas:
+      message_id: 4370                        # Optional UINT (4370). Sets the CMAS message ID. Supported: [0 - 65535].
+      serial_num: 12291                       # Optional UINT (12291). Sets the CMAS serial number. Supported: [0 - 65535].
+      data_coding_scheme: 0                   # Optional UINT (0). Sets the CMAS data coding scheme. Supported: [0 - 255].
+      warning_message:                        # Optional TEXT. Sets the CMAS warning message. Max length and character support depends on the chosen coding scheme.

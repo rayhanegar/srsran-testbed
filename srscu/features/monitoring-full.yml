@@ -1,0 +1,60 @@
+remote_control:
+  enabled: false                        # Optional BOOLEAN (false). Enables the remote control feature. Supported: [false, true].
+  bind_addr: 127.0.0.1                  # Optional TEXT (127.0.0.1). Sets the local IP address to bind for remote control. Supported: IPv4 address.
+  port: 8001                            # Optional UINT (8001). Sets the port where the remote control server listens for incoming connections. Supported: [0 - 65535].        
+
+log: 
+# All gNB layers and components can be configured independently to output at various levels of detail. Logs can be configured to the following levels (from lowest to highest levels of detail):
+# none, error, warning, info, debug
+  filename:                             # Optional TEXT (/tmp/gnb.log). File path for logs. Logs can be redirected to stdout by setting the filename to "stdout".
+  all_level: warning                    # Optional TEXT (warning). Sets a common log level across PHY, MAC, RLC, PDCP, RRC, SDAP, NGAP and GTPU layers.
+  lib_level: warning                    # Optional TEXT (warning). Sets generic log level.
+  e2ap_level: warning                   # Optional TEXT (warning). Sets E2AP log level.
+  config_level: none                    # Optional TEXT (none). Sets the config log level.
+  tracing_filename:                     # Optional TEXT. Set to a valid file name to enable tracing log.
+  rrc_level: warning                    # Optional TEXT (warning). Sets RRC log level.
+  ngap_level: warning                   # Optional TEXT (warning). Sets NGAP log level.
+  f1ap_level: warning                   # Optional TEXT (warning). Sets F1AP log level.
+  sec_level: warning                    # Optional TEXT (warning). Sets security functions level.
+  f1ap_json_enabled: false              # Optional BOOLEAN (false). Enables the JSON logging of F1AP PDUs.
+  pdcp_level: warning                   # Optional TEXT (warning). Sets PDCP log level.
+  sdap_level: warning                   # Optional TEXT (warning). Sets SDAP log level.
+  gtpu_level: warning                   # Optional TEXT (warning). Sets GTPU log level.
+  f1u_level: warning                    # Optional TEXT (warning). Sets F1u log level.
+  cu_level: warning                     # Optional TEXT (warning). Sets the CU log level. 
+  hex_max_size: 0                       # Optional UINT (0). Sets maximum number of bytes to print for hex messages. Supported: [0 - 1024]
+  e1ap_level: warning                   # Optional TEXT (warning). Sets E1AP log level.
+  e1ap_json_enabled: false              # Optional BOOLEAN (false). Enables the JSON logging of E1AP PDUs. Supported: [false, true].
+
+pcap: 
+  ngap_filename: /tmp/gnb_ngap.pcap     # Optional TEXT (/tmp/gnb_ngap.pcap). Path for NGAP PCAPs. 
+  ngap_enable: false                    # Optional BOOLEAN (false). Enable/disable NGAP packet capture. Supported: [false, true].
+  f1ap_filename: /tmp/gnb_f1ap.pcap     # Optional TEXT (/tmp/gnb_f1ap.pcap). Path for F1AP PCAPs. 
+  f1ap_enable: false                    # Optional BOOLEAN (false). Enable/disable F1AP packet capture. Supported: [false, true].
+  n3_filename: /tmp/gnb_n3.pcap         # Optional TEXT (/tmp/gnb_n3.pcap). Path for N3 PCAPs. 
+  n3_enable: false                      # Optional BOOLEAN (false). Enable/disable N3 packet capture. Supported: [false, true].
+  f1u_filename: /tmp/gnb_f1u.pcap       # Optional TEXT (/tmp/gnb_f1u.pcap). Path for F1-U (NRU) PCAPs. 
+  f1u_enable: false                     # Optional BOOLEAN (false). Enable/disable F1-U (NRU) packet capture. Supported: [false, true].
+  e1ap_filename: /tmp/gnb_e1ap.pcap     # Optional TEXT (/tmp/gnb_e1ap.pcap). Path for E1AP PCAPs. 
+  e1ap_enable: false                    # Optional BOOLEAN (false). Enable/disable E1AP packet capture. Supported: [false, true].
+  e2ap_cu_cp_filename: /tmp/cu_cp_e2ap.pcap # Optional TEXT (/tmp/cu_cp_e2ap.pcap). Path for E2AP CU-CP PCAPs.
+  e2ap_cu_up_filename: /tmp/cu_up_e2ap.pcap # Optional TEXT (/tmp/cu_up_e2ap.pcap). Path for E2AP CU-UP PCAPs. 
+  e2ap_enable: false                    # Optional BOOLEAN (false). Enable/disable E2AP packet capture. Supported: [false, true].
+
+metrics: 
+  addr: 127.0.0.1                       # Optional TEXT:IPV4 (127.0.0.1). Sets the metrics address. Supported: IPV4 address.
+  port: 55555                           # Optional UINT. Sets the metrics UPD port. Supported: [0 - 65535].
+  enable_json: false                    # Optional BOOLEAN (false). Enable JSON metrics reporting
+  enable_log: false                     # Optional BOOLEAN (false). Enable log metrics reporting
+  enable_verbose: false                 # Optional BOOLEAN (false). Enable extended detail metrics reporting
+
+  layers:
+    enable_app_usage: false               # Optional BOOLEAN (false). Enable application usage metrics
+    enable_e1ap: false                    # Optional BOOLEAN (false). Enable E1AP metrics
+    enable_pdcp: false                    # Optional BOOLEAN (false). Enable PDCP metrics
+    enable_cu_up_executor: false          # Optional BOOLEAN (false). Whether to log CU-UP executor metrics
+
+  perioidicity:
+    app_usage_report_period: 1000         # Optional UINT (1000). Application resource usage metrics report period in milliseconds
+    cu_cp_report_period: 1000             # Optional UINT (1000). CU-CP metrics report period in milliseconds
+    cu_up_report_period: 1000             # Optional UINT (1000). CU-UP metrics report period in milliseconds

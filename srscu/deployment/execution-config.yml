@@ -1,0 +1,23 @@
+buffer_pool: 
+  nof_segments: 1048576                 # Optional UINT (1048576). Sets the number of segments allocated by the buffer pool. 
+  segment_size: 2048                    # Optional UINT (2048). Sets the size of each buffer pool segment in bytes. 
+
+expert_execution:
+  affinities:
+    isolated_cpus:                        # Optional TEXT. Sets the CPU core(s) isolated for the CU application. Supported: [1, 2, 3 , ..., N].
+    low_priority_cpus:                    # Optional TEXT. Sets the CPU core(s) assigned to low priority tasks. Supported: [1, 2, 3 , ..., N].
+    low_priority_pinning:                 # Optional TEXT. Sets the policy used for assigning CPU cores to low priority tasks.   
+  
+  threads:
+    non_rt:
+      nof_non_rt_threads: 4                   # Optional UINT (4). Sets the number of non real time threads for processing of CP and UP data in upper layers.
+      non_rt_task_queue_size: 2048            # Optional UINT (2048). Sets the non real time task worker queue size. 
+
+  queues: 
+    cu_up_dl_ue_executor_queue_size: 8192   # Optional UINT (8192). Sets the CU-UP's DL UE executor queue size.
+    cu_up_ul_ue_executor_queue_size: 8192   # Optional UINT (8192). Sets the CU-UP's UL UE executor queue size.
+    cu_up_ctrl_ue_executor_queue_size: 8192 # Optional UINT (8192). Sets the CU-UP's CTRL UE executor queue size.
+    cu_up_strand_batch_size: 256            # Optional UINT (256). Sets the CU-UP's strands batch size.
+
+  tracing: 
+    cu_up_executor_tracing_enable: false    # Optional BOOLEAN (false). Enable tracing for CU-UP executors

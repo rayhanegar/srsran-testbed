@@ -1,0 +1,16 @@
+srscu/
+├── base/
+│   ├── cu-identity.yml              # CU-CP/CU-UP IDs, gNB identity
+│   ├── cu-cp-functions.yml          # RRC, NGAP, F1AP, E1AP, Mobility
+│   ├── cu-up-functions.yml          # PDCP, GTP-U, F1-U, N3
+│   └── qos-profiles.yml             # 5QI definitions, DRB configs
+├── deployment/
+│   ├── network-interfaces.yml       # AMF, F1, E1, N3 interfaces
+│   └── execution-config.yml         # CPU, threads, performance
+├── features/
+│   ├── slicing-enabled.yml          # Network slicing
+│   ├── e2-ran-integration.yml       # E2 interface for RIC
+│   └── monitoring-full.yml          # Logs, metrics, PCAP
+└── environments/
+    ├── development.yml              # Dev overrides
+    └── production.yml               # Prod settings

@@ -1,0 +1,36 @@
+cu_up: 
+  warn_on_drop: false                  # Optional BOOLEAN (false). Enables the option to log a warning for dropped packets in GTP-U and PDCP due to full queues. Supported: [false, true].
+
+  f1u:
+      socket:                               # Define UDP/IP socket(s) for F1-U interface.
+        -                                     # Socket 1
+          bind_addr: 127.0.3.1                  # Required TEXT. Sets the address that the F1-U socket will bind to.
+          ext_addr: 8.8.8.8                     # Optional TEXT. Sets the address that is reported as the F1-U bind address. If empty, the real bind address is used.
+          udp:
+            max_rx_msgs: 256                        # Optional UINT (256). Sets the maximum packets read from the socket in a single syscall.
+            pool_threshold: 0.9                     # Optional FLOAT (0.9). Sets the pool occupancy threshold, after which packets are dropped. Supported [0 - 1.0]. 
+
+  ngu: 
+    no_core: false                        # Optional BOOLEAN (false). Setting to true allows the gNB to run without a core. Supported: [0, 1].
+    socket:                               # Define socket(s) for NG-U interface.
+      -                                     # Socket 1 
+        bind_addr: 127.0.3.1                  # Optional TEXT (auto). Sets local IP address to bind for N3 interface. Format: IPV4 or IPV6 IP address.
+        udp:
+          max_rx_msgs: 256                      # Optional INT (256). Sets the maximum number of messages RX from a socket in a single syscall.
+          pool_threshold: 0.9                   # Optional FLOAT (0.9). Sets the pool occupancy threshold, after which packets are dropped. Supported: [0.0 - 1.0].
+          dscp:                                 # Optional UINT. Sets the Differentiated Services Code Point. Supported: [0 - 63].
+    gtpu: 
+      queue_size: 2046                       # Optional UINT (2046). GTP-U queue size, in PDUs
+      batch_size: 256                        # Optional UINT (256). Maximum number of GTP-U PDUs processed in a batch
+      reordering_timer: 0                    # Optional UINT (0). GTP-U RX reordering timer (in milliseconds)
+      rate_limiter_period:                   # Optional INT. GTP-U RX rate limiter period (in milliseconds)
+      ignore_ue_ambr: true                   # Optional BOOLEAN (true). Ignore GTP-U DL UE-AMBR rate limiter
+
+  test_mode:
+    enable: false                         # Optional BOOLEAN (false). Enable or disable CU-UP test mode
+    integrity_enable: false               # Optional BOOLEAN (false). Enable or disable PDCP integrity testing
+    ciphering_enable: false               # Optional BOOLEAN (false). Enable or disable PDCP ciphering testing
+    nea_algo: 2                           # Optional UINT:INT (2). NEA algo to use for testing. Format: [0 - 3]
+    nia_algo: 2                           # Optional UINT:INT (2). NIA algo to use for testing. Format: [1 - 3]
+    ue_ambr:                              # Optional UINT. DL UE-AMBR used for testing in bps
+    attach_detach_period:                 # Optional INT. Attach/detach period for test mode. 0 means always attached.

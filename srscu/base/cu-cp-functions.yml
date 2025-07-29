@@ -1,0 +1,59 @@
+cu_cp:
+  max_nof_dus:                          # Optional UINT. Maximum number of DU connections that the CU-CP may accept.
+  max_nof_cu_ups:                       # Optional UINT. Maximum number of CU-UP connections that the CU-CP may accept.
+  max_nof_ues:                          # Optional UINT. Maximum number of UEs that the CU-CP may accept.
+  max_nof_drbs_per_ue:                  # Optional UINT. Maximum number of DRBs per UE. Supported: [1 - 29].
+  inactivity_timer: 120                 # Optional INT (120). Sets the UE/PDU Session/DRB inactivity timer in seconds. Supported: [1 - 7200].
+  request_pdu_session_timeout: 3        # Optional INT (3). Timeout for the setup of a PDU session after an InitialUeMessage was sent to the core, in seconds. The timeout must be larger than T310. If the value is reached, the UE will be released
+
+  # Mobility Management
+  mobility:
+    trigger_handover_from_measurements: false   # Optional BOOLEAN (false). Sets whether or not to start HO if neighbor cells become stronger. Supported: [false, true].
+    cells:                                      # Optional TEXT. Sets the list of cells known to the CU-CP, their configs (if not provided over F1) and their respective neighbor cells.
+      -                                         # Define Cell 1
+        nr_cell_id:                               # Required UINT. The ID of this serving cell.
+        periodic_report_cfg_id:                   # Optional UINT. The periodical report configuration to use for this serving cell.
+        ncells:                                   # Required TEXT. List of neighbor cells.
+          nr_cell_id:                                 # Required UINT. The ID of this neighbor cell.
+          report_configs:                             # Required TEXT. List of report configurations to use for measurements of this neighbor cell.
+        gnb_id_bit_length:                        # Optional UINT. The ID of this gNB. Supported: [22 - 32]
+        pci:                                      # Optional UINT. The PCI of this serving cell. Supported: [0-1007]
+        band:                                     # Optional UINT. The NR band of this serving cell cell. Must be present if not provided over F1.
+        ssb_scs:                                  # Optional UINT. The SSB subcarrier spacing of this serving cell in KHz. Must be present if not provided over F1.
+        ssb_period:                               # Optional UINT. The SSB period of this serving cell in ms.  Must be present if not provided over F1.
+        ssb_offset:                               # Optional UINT. The SSB offset of this serving cell. Must be present if not provided over F1.
+        ssb_duration:                             # Optional UINT. The SSB duration of this serving cell in subframes. Must be present if not provided over F1.
+    report_configs:                             # Optional TEXT. Sets the list of report configurations to dynamically build a measurement configuration sent to the UEs using the below values.
+      -                                         # Define report configs for cell 1
+        report_cfg_id:                            # Required UINT. The ID of this report configuration.
+        report_type:                              # Required TEXT. The type of the report. Supported: [event_triggered, periodical]. Note that periodical reports are only supported for serving cells.
+        event_triggered_report_type:              # Optional TEXT. Sets the type of event triggered report. Supported: [a1, a2, a3, a4, a5, a6].
+        report_interval_ms: 1024                  # Optional UINT (1024). The report interval in ms. Supported: [120, 240, 480, 640, 1024, 2048, 5120, 10240, 20480, 40960, 60000, 360000, 720000, 1800000]. 
+        meas_trigger_quantity:                    # Optional TEXT. Sets the quantity to be measured. Supported: [rsrp, rsrq, sinr]. 
+        meas_trigger_quantity_threshold_db:       # Optional UINT. Sets the measurement trigger quantity threshold in dB used for measurement report trigger of event A1/A2/A4/A5. Supported: [0 - 127].
+        meas_trigger_quantity_threshold_2_db:     # Optional UINT. Sets the measurement trigger quantity threshold 2 in dB used for measurement report trigger of event A5. Supported: [0 - 127].
+        meas_trigger_quantity_offset_db:          # Optional UINT. Sets the measurement trigger quantity offset in dB used for measurement report trigger of event A3/A6. Note the actual value is field value * 0.5 dB. Supported: [-30 - 30].
+        hysteresis_db:                            # Optional UINT. Sets the hysteresis in dB used for measurement report trigger. Note the actual value is field value * 0.5 dB. Supported: [0 - 30].
+        time_to_trigger_ms:                       # Optional UINT. Sets the time in ms during which a condition must be met before measurement report trigger. Supported: [0, 40, 64, 80, 100, 128, 160, 256, 320, 480, 512, 640, 1024, 1280, 2560, 5120]. 
+
+
+  # RRC (Radio Resource Control) Configuration
+  rrc:
+    force_reestablishment_fallback: false    # Optional BOOLEAN (false). Force RRC re-establishment fallback to RRC setup. Supported: [false, true].
+    rrc_procedure_timeout_ms: 720            # Optional UINT (720). Sets the timeout in ms used for RRC message exchange with UE. It needs to suit the expected communication delay and account for potential retransmissions UE processing delays, SR delays, etc. Supported: [0 - inf].
+
+  # Security Configuration
+  security:
+    integrity: not_needed                    # Optional TEXT (not_needed). Sets the default integrity protection indication for DRBs.
+    confidentiality: required                # Optional TEXT (required). Sets the default integrity confidentiality indication for DRBs.
+    nea_pref_list: nea0,nea2,nea1            # Optional TEXT (nea0,nea2,nea1). Ordered preference list for the selection of encryption algorithm (NEA). Supported: [nea0,nea2,nea1,nea3].
+    nia_pref_list: nia2,nia1                 # Optional TEXT (nia2,nia1). Ordered preference list for the selection of encryption algorithm (NIA). Supported: [nia2,nia1,nia3].
+
+  # F1AP Interface to DU
+  f1ap:
+    bind_addr: 120.0.10.1                    # Optional TEXT (127.0.0.1). Sets the F1-c bind address. 
+    procedure_timeout: 1000                  # Optional INT (1000). Sets the time the F1AP waits for a DU response in milliseconds.
+
+  # E1AP Interface to CU-UP
+  e1ap: 
+    procedure_timeout: 1000                  # Optional INT (1000). Sets the time the E1AP waits for a CU-UP response in milliseconds.

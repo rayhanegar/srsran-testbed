@@ -1,0 +1,31 @@
+ru_sdr: 
+  srate: 61.44                          # Required FLOAT (61.44). Sets the sampling rate of the RF-frontend in MHz. 
+  device_driver: uhd                    # Required TEXT (uhd). RF device driver name. Supported: [uhd, zmq].
+  device_args:                          # Optional TEXT. An argument that gets passed to the selected RF driver.
+  tx_gain: 50                           # Required FLOAT (50). Sets the transmit gain in dB. Supported: [0 - max value supported by radio].
+  rx_gain: 60                           # Required FLOAT (60). Sets the receive gain in dB. Supported: [0 - max value supported by radio].
+  freq_offset: 0                        # Optional FLOAT (0). Sets the frequency offset in Hertz.
+  clock_ppm: 0                          # Optional FLOAT (0). Sets the clock calibration in Parts Per Million (PPM).
+  lo_offset: 0                          # Optional FLOAT (0). Shifts the local oscillator frequency in MHz away from the center frequency to move LO leakage out of the channel. 
+  clock: default                        # Optional TEXT (default). Specify the RF device clock source (i.e., 10MHz reference oscillator). Supported: [default, internal, external, gpsdo].
+  sync: default                         # Optional TEXT (default). Specify the RF device time synchronization source (i.e., 1PPS reference). Supported: [default, internal, external, gpsdo].
+  otw_format: default                   # Optional TEXT (default). Specific the over-the-wire format. Supported: [default, sc8, sc12, sc16].
+  time_alignment_calibration: auto      # Optional TEXT (auto). Compensates for any reception and transmission time misalignment inherent to the RF device. Positive values reduce the RF transmission delay with respect to the RF reception. Negative values have the opposite effect.
+
+  amplitude_control: 
+    tx_gain_backoff: 12.0                     # Optional FLOAT (12.0). Sets baseband gain back-off in dB. This accounts for the signal PAPR and is applied regardless of clipping settings. Format: positive float.
+    enable_clipping: false                    # Optional BOOLEAN (false). Sets clipping of the baseband samples on or off. If enabled, samples that exceed the power ceiling are clipped.
+    ceiling: -0.1                             # Optional FLOAT (-0.1). Sets the power ceiling in dB, relative to the full scale amplitude of the radio. Format: negative float or 0.
+
+  expert_cfg:
+    low_phy_dl_throttling: 0                # Optional FLOAT (0). Throttles the lower PHY DL baseband generation. Setting to 0 disables throttling. Supported: any value in the range [0 - 1].
+    tx_mode: continuous                     # Optional TEXT (continuous). Selects a radio transmission mode. Discontinuous modes are not supported by all radios. Supported: [continuous, discontinuous, same-port]
+    power_ramping_time_us: 0                # Optional FLOAT (0). Specifies the power ramping time in microseconds, it proactively initiates the transmission and mitigates transient effects. It is recommended to configure this parameter carefully, taking into account the characteristics of the transmit chain in order to achieve optimal performance
+    dl_buffer_size_policy: auto             # Optional TEXT (auto). Sets the size of the policy of the baseband buffers that pass the DL samples from the lower PHY to the radio.
+
+ru_dummy: 
+  dl_processing_delay: 1                # Optional UINT (1). Sets the downlink processing delay in number of slots. 
+  time_scaling: 1                       # Optional NONNEGATIVE FLOAT (1). Sets the time scaling factor applied to the slot duration. Must be greater than zero. A value greater than one slows down the RU, while a value between zero and one speeds it up. Supported [0 - inf].
+
+fapi: 
+  l2_nof_slots_ahead: 0                 # Optional UINT (0). Sets the number of slots the L2 is running ahead of the L1. Supported: [0 - 5]. 

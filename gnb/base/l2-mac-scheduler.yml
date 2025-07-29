@@ -1,0 +1,160 @@
+cell_cfg:
+
+  # UL (Uplink) Parameters
+  ul_common:
+    p_max:                                  # Optional TEXT. Sets maximum transmit power allowed in this serving cell. Supported: [-30 - +23].
+    max_pucchs_per_slot: 31                 # Optional INT (31). Sets the maximum number of PUCCH grants that can be allocated per slot. Supported: [1 - 64].
+    max_ul_grants_per_slot: 32                 # Optional INT (32). Sets the maximum number of UL grants that can be allocated per slot. Supported: [1 - 80].
+
+  # PDCCH (Physical Downlink Control Channel) Parameters
+  pdcch:
+    common:
+      coreset0_index:                           # Optional INT. Sets the CORESET 0 index. Supported: [0 - 15].
+      ss1_n_candidates: [0, 0, 1, 0, 0]         # Optional UINT ([0, 0, 1, 0, 0]). Sets the number of PDCCH candidates per aggregation level for SearchSpace#1. Supported: any 5 value array containing the following UINT values [0, 1, 2, 3, 4, 5, 6, 7, 8].
+      ss0_index: 0                              # Optional UINT (0). Sets the SearchSpace#0 index. Supported: [0 - 15].
+      max_coreset0_duration:                    # Optional INT. Sets the maximum CORESET#0 duration in OFDM symbols to consider when deriving CORESET#0 index. Supported: [1 - 2].
+    dedicated:
+      coreset1_rb_start: 1                      # Optional INT (0). Sets the starting common resource block (CRB) number for CORESET 1, relative to CRB0. Supported: [0 - 275].
+      coreset1_l_crb:                           # Optional INT (Across entire BW of cell). Sets the length of CORESET 1 in number of CRBs. Supported: [0 - 275].
+      coreset1_duration:                        # Optional INT (Max(2, Nof. CORESET#0 symbols)). Sets the duration of CORESET 1 in number of OFDM symbols. Supported: [1 - 2].
+      ss2_n_candidates: [0, 2, 4, 0, 0]         # Optional UINT ([0, 2, 4, 0, 0]). Sets the number of PDCCH candidates per aggregation level for SearchSpace#2. Supported: any 5 value array containing the following UINT values [0, 1, 2, 3, 4, 5, 6, 7, 8].
+      dci_format_0_1_and_1_1: true              # Optional BOOLEAN (true). Sets whether to use non-fallback or fallback DCI format in UE SearchSpace#2. Supported: [false, true].
+      ss2_type: ue_dedicated                    # Optional TEXT (ue_dedicated). Sets the SearchSpace type for UE dedicated SearchSpace#2. Supported: [common, ue_dedicated].
+      al_cqi_offset: 0                          # Optional FLOAT (0). Offset to apply to the CQI value used in the PDCCH aggregation level calculation. Format: [-15 - 15]
+
+  # PDSCH (Physical Downlink Shared Channel) Parameters
+  pdsch:
+    min_ue_mcs: 0                           # Optional UINT (0). Sets a minimum PDSCH MCS value to be used for all UEs. Supported: [0 - 28].
+    max_ue_mcs: 28                          # Optional UINT (28). Sets a maximum PDSCH MCS value to be used for all UEs. Supported: [0 - 28].
+    fixed_rar_mcs: 0                        # Optional UINT (0). Sets a fixed RAR MCS value for all UEs. Supported: [0 - 28].
+    fixed_sib1_mcs: 5                       # Optional UINT (5). Sets a fixed SIB1 MCS for all UEs. Supported: [0 - 28].
+    nof_harqs: 16                           # Optional UNIT (16). Sets the number of Downlink HARQ processes. Supported [2, 4, 6, 8, 10, 12, 16].
+    max_nof_harq_retxs: 4                   # Optional UINT (4). Sets the maximum number times a DL HARQ can be retransmitted before it is discarded. Supported: [0 - 4].
+    harq_retx_timeout: 100                  # Optional UINT (100). Maximum time, in milliseconds, between a HARQ NACK and the scheduler allocating the respective HARQ for retransmission. If this timeout is exceeded, the HARQ process is discarded. Format: [10 - 500]
+    max_consecutive_kos: 100                # Optional UINT (100). Sets the maximum number of consecutive HARQ-ACK KOs before an RLF is reported. Supported: [0 - inf].
+    rv_sequence: [0,2,3,1]                  # Optional UINT (0,2,3,1). Sets the redundancy version sequence to use for PDSCH. Supported: any combination of [0, 1, 2, 3].
+    mcs_table: qam64                        # Optional TEXT (qam64). Sets the MCS table to use for PDSCH. Supported: [qam64, qam256].
+    min_rb_size: 1                          # Optional UINT (1). Sets the minimum RB size for the UE PDSCH resource allocation. Supported: [1 - 275].
+    max_rb_size: 275                        # Optional UINT (275). Sets the maximum RB size for the UE PDSCH resource allocation. Supported: [1 - 275].
+    start_rb: 0                             # Optional UINT (0). Sets the start RB for resource allocation of UE PDSCHs. Supported [0 - 275].
+    end_rb: 275                             # Optional UINT (275). Sets the end RB for resource allocation of UE PDSCHs. Supported [0 - 275].
+    max_pdschs_per_slot: 35                 # Optional UINT (35). Sets the maximum number of PDSCH grants per slot, including SIB, RAR, Paging and UE data grants. Supported: [1 - 35].
+    max_alloc_attempts: 35                  # Optional UINT (35). Sets the maximum number of DL or UL PDCCH grant allocation attempts per slot before scheduler skips the slot. Supported: [1 - 35].
+    nof_preselected_newtx_ues: 32           # Optional UINT (32). Number of UEs pre-selected for a potential DL newTx allocation in a slot. Format: [1 - 1024]
+    newtx_ues_selection_period: 3             # Optional UINT (3). Number of slots between each computation of newTx UE candidates for potential allocation in a slot. Format: [1 - 1024]
+    olla_cqi_inc_step: 0.001                # Optional FLOAT (0.001). Sets the outer-loop link adaptation (OLLA) increment value. The value 0 means that OLLA is disabled. Supported: [0 - 1].
+    olla_target_bler: 0.01                  # Optional FLOAT (0.01). Sets the target DL BLER set in Outer-loop link adaptation (OLLA) algorithm. Supported: [0 - 0.5].
+    olla_max_cqi_offset: 4                  # Optional FLOAT (4). Sets the maximum offset that the Outer-loop link adaptation (OLLA) can apply to CQI. Supported: positive float.
+    dc_offset:                              # Optional TEXT. Sets the direct Current (DC) Offset in number of subcarriers, using the common SCS as reference for carrier spacing, and the center of the gNB DL carrier as DC offset value 0. The user can additionally
+                                            # set "outside" to define that the DC offset falls outside the DL carrier or "undetermined" in the case the DC offset is unknown. Supported: [-1650 - 1649] OR [outside,undetermined,center].
+    harq_la_cqi_drop_threshold: 3           # Optional UINT (3). Sets the link Adaptation (LA) threshold for drop in CQI of the first HARQ transmission above which HARQ retransmissions are cancelled. Set this value to 0 to disable this feature. Supported: [0 - 15].
+    harq_la_ri_drop_threshold: 1            # Optional UINT (1). Sets the link Adaptation (LA) threshold for drop in nof. layers of the first HARQ transmission above which HARQ retransmission is cancelled. Set this value to 0 to disable this feature. Supported: [0 - 4].
+    dmrs_additional_position: 2             # Optional UINT (2). Sets the PDSCH DMRS additional position. Supported: [0 - 3].
+    interleaving_bundle_size:               # Optional ENUM. PDSCH interleaving bundle size. Supporte
+
+  # PUSCH (Physical Uplink Shared Channel) Parameters
+  pusch:
+    min_ue_mcs: 0                           # Optional UINT (0). Sets a minimum PUSCH MCS value to be used for all UEs. Supported: [0 - 28].
+    max_ue_mcs: 28                          # Optional UINT (28). Sets a maximum PUSCH MCS value to be used for all UEs. Supported: [0 - 28].
+    max_nof_harq_retxs: 4                   # Optional UINT (4). Maximum number of times a UL HARQ can be retransmitted, before it gets discarded. Format: [0 - 64]
+    harq_retx_timeout: 100                  # Optional UINT (100). Maximum time, in milliseconds, between a CRC=KO and the scheduler allocating the respective HARQ for retransmission. If this timeout is exceeded, the HARQ process is discarded. Format: [10 - 500]
+    max_consecutive_kos: 100                # Optional UINT (100). Sets the maximum number of consecutive CRC KOs before an RLF is reported. Supported: [0 - inf].
+    rv_sequence: [0]                        # Optional UINT (0). Sets the redundancy version sequence to use for PUSCH. Supported: any combination of [0, 1, 2, 3].
+    mcs_table: qam64                        # Optional TEXT (qam64). Sets the MCS table to use for PUSCH. Supported: [qam64, qam256].
+    max_rank: 4                             # Optional UINT (4). Sets the maximum number of PUSCH transmission layers. The actual maximum is limited by the number of receive ports and UE capabilities. Supported: [0 - 4].
+    msg3_delta_preamble: 6                  # Optional INT (6). Sets the MSG3 DeltaPreamble power offset between MS3 and RACH preamble transmission. Supported: [-1 - 6].
+    p0_nominal_with_grant: -76              # Optional INT (-76). Sets the P0 value for PUSCH grant (except MSG3), in dBm. Supported: multiples of 2 within the range [-202, 24].
+    msg3_delta_power: 8                     # Optional INT (8). Sets the target power level at the network receiver side, in dBm. Supported: multiples of 2 within the range [-6, 8].
+    max_puschs_per_slot: 16                 # Optional UINT (16). Sets the maximum number of PUSCH grants per slot. Supprted: [1 - 16].
+    nof_preselected_newtx_ues: 32           # Optional UINT (32). Number of UEs pre-selected for a potential UL newTx allocation in a slot. Format: [1 - 1024]
+    newtx_ues_selection_period: 1           # Optional UINT (1). Number of slots between each computation of newTx UE candidates for potential allocation in a slot. Format: [1 - 1024]
+    beta_offset_ack_idx_1: 9                # Optional UINT (9). Sets the betaOffsetACK-Index1 part of UCI-OnPUSCH. Supported: [0 - 31].
+    beta_offset_ack_idx_2: 9                # Optional UINT (9). Sets the betaOffsetACK-Index2 part of UCI-OnPUSCH. Supported: [0 - 31].
+    beta_offset_ack_idx_3: 9                # Optional UINT (9). Sets the betaOffsetACK-Index3 part of UCI-OnPUSCH. Supported: [0 - 31].
+    beta_offset_csi_p1_idx_1: 9             # Optional UINT (9). Sets the b_offset_csi_p1_idx_1 part of UCI-OnPUSCH. Supported: [0 - 31].
+    beta_offset_csi_p1_idx_2: 9             # Optional UINT (9). Sets the b_offset_csi_p1_idx_2 part of UCI-OnPUSCH. Supported: [0 - 31].
+    beta_offset_csi_p2_idx_1: 9             # Optional UINT (9). Sets the b_offset_csi_p2_idx_1 part of UCI-OnPUSCH. Supported: [0 - 31].
+    beta_offset_csi_p2_idx_2: 9             # Optional UINT (9). Sets the b_offset_csi_p2_idx_2 part of UCI-OnPUSCH. Supported: [0 - 31].
+    min_k2: 4                               # Optional UINT (4). Sets the minimum value of K2 (difference in slots between PDCCH and PUSCH). Supported: [1 - 4].
+    dc_offset:                              # Optional TEXT. Sets the direct Current (DC) Offset in number of subcarriers, using the common SCS as reference for carrier spacing, and the center of the gNB UL carrier as DC offset value 0. The user can additionally
+                                            # set "outside" to define that the DC offset falls outside the DL carrier or "undetermined" in the case the DC offset is unknown. Supported: [-1650 - 1649] OR [outside,undetermined,center].
+    olla_snr_inc_step: 0.001                # Optional FLOAT (0.001). Sets the outer-loop link adaptation (OLLA) increment value. The value 0 means that OLLA is disabled. Supported: [0 - 1].
+    olla_target_bler: 0.01                  # Optional FLOAT (0.01). Sets the target UL BLER set in Outer-loop link adaptation (OLLA) algorithm. sUPPORTED: [0 - 0.5].
+    olla_max_snr_offset: 5                  # Optional FLOAT (5). Sets the maximum offset that the Outer-loop link adaptation (OLLA) can apply to estimate the UL SNR. Supported: positive float.
+    dmrs_additional_position: 2             # Optional UINT (2). Sets the PUSCH DMRS additional position. Supported: [0 - 3].
+    min_rb_size: 1                          # Optional UINT (1). Sets the minimum RB size for the UE PUSCH resource allocation. Supported: [1 - 275].
+    max_rb_size: 275                        # Optional UINT (275). Sets the maximum RB size for the UE PUSCH resource allocation. Supported: [1 - 275].
+    start_rb: 0                             # Optional UINT (0). Sets the start RB for resource allocation of UE PUSCHs. Supported: [0 - 275].
+    end_rb: 275                             # Optional UINT (275). Sets the end RB for resource allocation of UE PUSCHs. Supported: [0 - 275].
+    enable_cl_loop_pw_control: false        # Optional BOOLEAN (false). Enables the closed-loop power control for PUSCH. Supported: [false, true].
+    enable_phr_bw_adaptation: false         # Optional BOOLEAN (false). Enable bandwidth adaptation to prevent negative PHR. Supported: [false, true]
+    target_sinr: 10                         # Optional FLOAT (10). Sets the target SINR in dB. Supported: [-5 - 30].
+    ref_path_loss: 70                       # Optional FLOAT (70). Sets the reference path-loss for target PUSCH SINR in dB. Supported: [50 - 120].
+    pl_compensation_factor: 1               # Optional FLOAT (1). Sets the fractional path-loss compensation factor in PUSCH power control. Supported: [0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1].
+    enable_transform_precoding: false       # Optional BOOLEAN (false). Enables transform precoding for PUSCH. Supported: [false, true]
+
+  # PUCCH (Physical Uplink Control Channel) Parameters
+  pucch:
+    p0_nominal: -90                         # Optional UINT (-90). Sets the power control parameter P0 for PUCCH transmissions in dBm. Supported: multiples of 2 and within the [-202, 24] interval.
+    pucch_resource_common: 11               # Optional UINT (11). Index of PUCCH resource set for the common configuration. Supported: [0 - 15].
+    sr_period_ms: 20                        # Optional UINT (20). Sets the SR period in milliseconds. Supported: [1,2,4,8,10,16,20,40,80,160,320].
+    use_format_0: false                     # Optional BOOLEAN (false). Enables the use of Format 0 for PUCCH resources from resource set 0. Supported: [false, true].
+    pucch_set1_format: 2                    # Optional UINT (2). Sets the PUCCH format for PUCCH resource set 1. Supported: [2, 3, 4].
+    nof_ue_res_harq_per_set: 8              # Optional UINT (8). Sets the number of PUCCH resources available per UE for HARQ for each PUCCH resource set. Supported: [1 - 8].
+    f0_or_f1_nof_cell_res_sr: 8             # Optional UINT (8). Sets the number of PUCCH F0 or F1 resources available per cell for SR. Supported: [1 - 50].
+    f0_intraslot_freq_hop: false            # Optional BOOLEAN (false). Enables intra-slot frequency hopping for PUCCH F0. Supported: [false, true].
+    f1_enable_occ: false                    # Optional BOOLEAN (false). Enables OCC for PUCCH F1. Supported: [false, true].
+    f1_nof_cyclic_shifts: 2                 # Optional UINT (2). Sets the number of possible cyclic shifts available for PUCCH F1 resources. Supported: [1,2,3,4,6,12].
+    f1_intraslot_freq_hop: false            # Optional BOOLEAN (false). Enables intra-slot frequency hopping for PUCCH F1. Supported: [false, true].
+    nof_cell_harq_pucch_res_sets: 2         # Optional UINT (2). Sets the number of separate PUCCH resource sets for HARQ-ACK that are available in the cell. The higher the number of sets, the lower the chances UEs have to share the same PUCCH resources. Supported: [1 - 10].
+    f2_or_f3_or_f4_nof_cell_res_csi: 8      # Optional UINT (8). Sets the number of PUCCH F2, F3 or F4 resources available per cell for CSI. Supported: [0 - 100].
+    f2_max_nof_rbs: 1                       # Optional UINT (1). Sets the max number of RBs for PUCCH F2 resources. Supported: [1 - 16].
+    f2_max_payload:                         # Optional INT. Sets the max number of payload bits for PUCCH F2 resources. Supported [1 - 11].
+    f2_max_code_rate: dot35                 # Optional TEXT (dot35). Sets the PUCCH F2 max code rate. Supported: [dot08, dot15, dot25, dot35, dot45, dot60, dot80].
+    f2_intraslot_freq_hop: false            # Optional BOOLEAN (false). Enables intra-slot frequency hopping for PUCCH F2. Supported: [false, true].
+    f3_max_nof_rbs: 1                       # Optional UINT (1). Sets the max number of RBs for PUCCH F3 resources. Supported: [1 - 16].
+    f3_max_payload:                         # Optional INT. Sets the max number of payload bits for PUCCH F3 resources. Supported [1 - 11].
+    f3_max_code_rate: dot35                 # Optional TEXT (dot35). Sets the PUCCH F3 max code rate. Supported: [dot08, dot15, dot25, dot35, dot45, dot60, dot80].
+    f3_intraslot_freq_hop: false            # Optional BOOLEAN (false). Enables intra-slot frequency hopping for PUCCH F3. Supported: [false, true]
+    f3_additional_dmrs: false               # Optional BOOLEAN (false). Enables additional DMRS for PUCCH F3. Supported: [false, true].
+    f3_pi2_bpsk: false                      # Optional BOOLEAN (false). Enables pi/2 BPSK for PUCCH F3. Supported: [false, true].
+    f4_max_code_rate: dot35                 # Optional TEXT (dot35). Sets the PUCCH F4 max code rate. Supported: [dot08, dot15, dot25, dot35, dot45, dot60, dot80].
+    f4_intraslot_freq_hop: false            # Optional BOOLEAN (false). Enables intra-slot frequency hopping for PUCCH F4. Supported: [false, true].
+    f4_additional_dmrs: false               # Optional BOOLEAN (false). Enables additional DMRS for PUCCH F4. Supported: [false, true].
+    f4_pi2_bpsk: false                      # Optional BOOLEAN (false). Enables pi/2 BPSK for PUCCH F4. Supported: [false, true].
+    f4_occ_length: 2                        # Optional UINT (2). Sets the OCC length for PUCCH F4. Supported: [1 - 4].                      
+    min_k1: 4                               # Optional UINT (4). Sets the minimum value of K1 (difference in slots between PDSCH and HARQ-ACK). Lower k1 values will reduce latency, but place a stricter requirement on the UE decode latency. Supported: [1 - 4].
+    max_consecutive_kos: 100                # Optional UINT (100). Sets the maximum number of consecutive undecoded PUCCH F2 for CSI before an Radio Link Failure is reported.
+    enable_cl_loop_pw_control: false        # Optional BOOLEAN (false). Enables the closed-loop power control for PUCCH. Supported: [false, true].
+    target_sinr_f0: 10                      # Optional FLOAT (10). Sets the target SINR for PUCCH F0 in dB. Supported: [-10 - 20].
+    target_sinr_f2: 6                       # Optional FLOAT (6). Sets the target SINR for PUCCH F2 in dB. Supported: [-10 - 20].
+    target_sinr_f3: 1                       # Optional FLOAT (1). Sets the target SINR for PUCCH F3 in dB. Supported: [-15 - 10].
+
+  # MAC Cell Group Parameters
+  mac_cell_group:
+      bsr_cfg:                                # Buffer status report configuration parameters
+        periodic_bsr_timer: 10                    # Optional UINT (10). Sets the periodic Buffer Status Report Timer value in nof. subframes. Value 0 equates to infinity. Supported: [1, 5, 10, 16, 20, 32, 40, 64, 80, 128, 160, 320, 640, 1280, 2560, 0].
+        retx_bsr_timer: 80                        # Optional UINT (80). sets the retransmission Buffer Status Report Timer value in nof. subframes. Supported: [10, 20, 40, 80, 160, 320, 640, 1280, 2560, 5120, 10240].
+        lc_sr_delay_timer:                        # Optional TEXT. Sets the logical Channel SR delay timer in nof. subframes. Supported: [10, 20, 40, 80, 160, 320, 640, 1280, 2560].
+      phr_cfg:                                # Power Headroom report configuration parameters
+        phr_prohibit_timer: 10                    # Optional UINT (10). Sets the PHR prohibit timer in nof. subframes. Supported: [0, 10, 20, 50, 100, 200, 500, 1000].
+      sr_cfg:                                 # Scheduling Request configuration parameters
+        sr_trans_max: 64                          # Optional UINT (64). Sets the maximum number of SR transmissions. Supported: [4, 8, 16, 32, 64].
+        sr_prohibit_timer:                        # Optional TEXT. Sets the timer for SR transmission on PUCCH in ms. Supported: [1, 2, 4, 8, 16, 32, 64, 128].
+
+  # Scheduler Expert Configuration
+  sched_expert_cfg:
+    policy_sched_cfg:
+      qos_sched:
+        qos_weight_function: gbr_prioritized  # Optional TEXT (gbr_prioritized). Sets the QoS weight function to use in the QoS scheduler. Supported: [gbr_prioritized, multivariate].      
+        pf_fairness_coeff: 2                  # Optional FLOAT [2]. Sets the fairness Coefficient to use in Proportional Fair policy scheduler.
+        prio_enabled: true                   # Optional BOOLEAN (true). Sets whether or not to take into account the QoS Flow priority in QoS-aware scheduling. Supported: [false, true].
+        pdb_enabled: true                     # Optional BOOLEAN (true). Sets whether or not to take into account the Packet Delay Budget (PDB) in QoS-aware scheduling. Supported: [false, true].
+        gbr_enabled: true                     # Optional BOOLEAN (true). Sets whether or not to take into account the Guaranteed Bit Rate (GBR) in QoS-aware scheduling. Supported: [false, true].
+    ta_sched_cfg:
+        ta_measurement_slot_period: 80              # Optional UINT (80). Sets the measurements periodicity in nof. slots over which the new Timing Advance Command is computed.
+        ta_measurement_slot_prohibit_period: 0      # Optional UINT (0). Sets the delay in number of slots between issuing the TA_CMD and starting TA measurements. Supported: [0 - 10000].
+        ta_cmd_offset_threshold: 1                  # Optional INT (1). Sets the timing Advance Command (T_A) offset threshold above which Timing Advance Command is triggered. If set to less than zero, issuing of TA Command is disabled. Supported: [-1 - 31].
+        ta_target: 1                                # Optional INT (1). Sets the timing advance target in units of TA. Supported: [-30 - 30].
+        ta_update_measurement_ul_sinr_threshold: 0  # Optional FLOAT (0). Sets the UL SINR threshold (in dB) above which reported N_TA update measurement is considered valid. 
+

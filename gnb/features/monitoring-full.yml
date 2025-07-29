@@ -1,0 +1,81 @@
+log:
+# All gNB layers and components can be configured independently to output at various levels of detail. Logs can be configured to the following levels (from lowest to highest levels of detail):
+# none, error, warning, info, debug
+  filename:                             # Optional TEXT (/tmp/gnb.log). File path for logs. Logs can be redirected to stdout by setting the filename to "stdout".
+  all_level: warning                    # Optional TEXT (warning). Sets a common log level across PHY, MAC, RLC, PDCP, RRC, SDAP, NGAP and GTPU layers.
+  lib_level: warning                    # Optional TEXT (warning). Sets the generic log level.
+  e2ap_level: warning                   # Optional TEXT (warning). Sets the E2AP log level.
+  config_level: none                    # Optional TEXT (none). Sets the config log level.
+  tracing_filename:                     # Optional TEXT. Set to a valid file name to enable tracing log.
+  rrc_level: warning                    # Optional TEXT (warning). Sets the RRC log level.
+  ngap_level: warning                   # Optional TEXT (warning). Sets NGAP log level.
+  sec_level: warning                    # Optional TEXT (warning). Sets the security functions level.
+  pdcp_level: warning                   # Optional TEXT (warning). Sets the PDCP log level.
+  sdap_level: warning                   # Optional TEXT (warning). Sets the SDAP log level.
+  e1ap_level: warning                   # Optional TEXT (warning). Sets the E1AP log level.
+  e1ap_json_enabled: false              # Optional BOOLEAN (false). Enables the JSON logging of E1AP PDUs. Supported: [false, true].
+  cu_level: warning                     # Optional TEXT (warning). Sets the CU log level.
+  mac_level: warning                    # Optional TEXT (warning). Sets the MAC log level.
+  rlc_level: warning                    # Optional TEXT (warning). Sets the RLC log level.
+  f1ap_level: warning                   # Optional TEXT (warning). Sets the F1AP log level.
+  f1u_level: warning                    # Optional TEXT (warning). Sets the F1u log level.
+  gtpu_level: warning                   # Optional TEXT (warning). Sets the GTPU log level.
+  du_level: warning                     # Optional TEXT (warning). Sets the DU log level.
+  f1ap_json_enabled: false              # Optional BOOLEAN (false). Enables the JSON logging of F1AP PDUs. Supported: [false, true].
+  high_latency_diagnostics_enabled: false # Optional BOOLEAN (false). Enables logging of performance diagnostics when high computational latencies are detected. Supported: [false, true].
+  fapi_level: warning                   # Optional TEXT (warning). Sets FAPI log level.
+  hal_level: warning                    # Optional TEXT (warning). Sets the HAL log level.
+  broadcast_enabled: false              # Optional BOOLEAN (false). Enables logging in the PHY and MAC layer of broadcast messages and all PRACH opportunities. Supported: [false, true].
+  phy_rx_symbols_filename:              # Optional TEXT. Print received symbols to file. Symbols will be printed if a valid path is set. Format: file path. This file can be used in the srsRAN_matlab project.
+  phy_rx_symbols_port: 0                # Optional TEXT. Set to a valid receive port number to dump the IQ symbols from that port only, or set to "all" to dump the IQ symbols from all UL receive ports. Only works if "phy_rx_symbols_filename" is set. Supported: [NON-NEGATIVE or all].
+  phy_rx_symbols_prach: false           # Optional BOOLEAN (false). Set to true to dump the IQ symbols from all the PRACH ports. Only works if "phy_rx_symbols_filename" is set. Supported: [false, true].
+  hex_max_size: 0                       # Optional UINT (0). Sets maximum number of bytes to print for hex messages. Supported: [0 - 1024]
+  ofh_level: warning                    # Optional TEXT (warning). Sets Open Fronthaul log level.
+  radio_level: info                     # Optional TEXT (info). Sets radio log level.
+  phy_level: warning                    # Optional TEXT (warning). Sets PHY log level.
+
+pcap:
+  ngap_filename: /tmp/gnb_ngap.pcap     # Optional TEXT (/tmp/gnb_ngap.pcap). Path for NGAP PCAPs.
+  ngap_enable: false                    # Optional BOOLEAN (false). Enable/disable NGAP packet capture. Supported: [false, true].
+  n3_filename: /tmp/gnb_n3.pcap         # Optional TEXT (/tmp/gnb_n3.pcap). Path for N3 PCAPs.
+  n3_enable: false                      # Optional BOOLEAN (false). Enable/disable N3 packet capture. Supported: [false, true].
+  e1ap_filename: /tmp/gnb_e1ap.pcap     # Optional TEXT (/tmp/gnb_e1ap.pcap). Path for E1AP PCAPs.
+  e1ap_enable: false                    # Optional BOOLEAN (false). Enable/disable E1AP packet capture. Supported: [false, true].
+  e2ap_cu_cp_filename: /tmp/cu_cp_e2ap.pcap # Optional TEXT (/tmp/cu_cp_e2ap.pcap). Path for E2AP CU-CP PCAPs.
+  e2ap_cu_up_filename: /tmp/cu_up_e2ap.pcap # Optional TEXT (/tmp/cu_up_e2ap.pcap). Path for E2AP CU-UP PCAPs.
+  e2ap_du_filename: /tmp/du_e2ap.pcap   # Optional TEXT (/tmp/du_e2ap.pcap). Path for E2AP CU PCAPs.
+  e2ap_enable: false                    # Optional BOOLEAN (false). Enable/disable E2AP packet capture. Supported: [false, true].
+  f1ap_filename: /tmp/gnb_f1ap.pcap     # Optional TEXT (/tmp/gnb_f1ap.pcap). Path for F1AP PCAPs.
+  f1ap_enable: false                    # Optional BOOLEAN (false). Enable/disable F1AP packet capture. Supported: [false, true].
+  f1u_filename: /tmp/gnb_f1u.pcap       # Optional TEXT (/tmp/gnb_f1ap.pcap). Path for F1AP PCAPs.
+  f1u_enable: false                     # Optional BOOLEAN (false). Enable/disable F1AP packet capture. Supported: [false, true].
+  rlc_filename: /tmp/gnb_rlc.pcap       # Optional TEXT (tmp/gnb_rlc.pcap). Path for RLC PCAPs.
+  rlc_rb_type: all                      # Optional TEXT. Sets the RLC PCAP RB type. Supported: [all, srb, drb].
+  rlc_enable: false                     # Optional BOOLEAN (false). Enable/disable RLC packet capture. Supported: [false, true].
+  mac_filename: /tmp/gnb_mac.pcap       # Optional TEXT (/tmp/gnb_mac.pcap). Path for MAC PCAPs.
+  mac_type: udp                         # Optional TEXT (udp). Sets the MAC PCAP pcap type. Supported: [DLT or UDP].
+  mac_enable: false                     # Optional BOOLEAN (false). Enable/disable MAC packet capture. Supported: [false, true].
+
+metrics:
+  autostart_stdout_metrics: false       # Optional BOOLEAN (false). Sets whether or note to autostart stdout metrics reporting. Supported [false, true].
+  addr: 127.0.0.1                       # Optional TEXT:IPV4 (127.0.0.1). Sets the metrics address. Supported: IPV4 address.
+  port: 55555                           # Optional UINT. Sets the metrics UPD port. Supported: [0 - 65535].
+  enable_json: false                    # Optional BOOLEAN (false). Enable JSON metrics reporting
+  enable_log: false                     # Optional BOOLEAN (false). Enable log metrics reporting
+  enable_verbose: false                 # Optional BOOLEAN (false). Enable extended detail metrics reporting
+  layers: 
+    enable_app_usage: false               # Optional BOOLEAN (false). Enable application usage metrics
+    enable_e1ap: false                    # Optional BOOLEAN (false). Enable E1AP metrics
+    enable_pdcp: false                    # Optional BOOLEAN (false). Enable PDCP metrics
+    enable_cu_up_executor: false          # Optional BOOLEAN (false). Whether to log CU-UP executor metrics
+    enable_sched: true                    # Optional BOOLEAN (true). Enable DU scheduler metrics
+    enable_rlc: false                     # Optional BOOLEAN (false). Enable RLC metrics
+    enable_mac: false                     # Optional BOOLEAN (false). Enable MAC metrics
+    enable_executor: false                # Optional BOOLEAN (false). Whether to log DU-high executor metrics
+    enable_du_low: false                  # Optional BOOLEAN (false). Enable DU low metrics (upper physical layer)
+    enable_ru: false                      # Optional BOOLEAN (false). Enable Radio Unit metrics
+  periodicity: 
+    app_usage_report_period: 1000         # Optional UINT (1000). Application resource usage metrics report period in milliseconds
+    cu_cp_report_period: 1000             # Optional UINT (1000). CU-CP metrics report period in milliseconds
+    cu_up_report_period: 1000             # Optional UINT (1000). CU-UP metrics report period in milliseconds
+    du_report_period: 1000                # Optional UINT:INT (1000). DU statistics report period in milliseconds. Format: [0 - 10485760].

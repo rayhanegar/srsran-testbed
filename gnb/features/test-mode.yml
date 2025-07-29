@@ -1,0 +1,18 @@
+test_mode:
+  test_ue:                                  
+    rnti: 0                               # Optional ENUM (0). Sets the C-RNTI of the UE. Supported: [0 - 65519].
+    nof_ues: 1                            # Optonal UINT (1). Sets the number of test UE(s) created. Supported [0 - 1024].
+    auto_ack_indication_delay:            # Optional TEXT. Sets the delay before the UL and DL HARQs are automatically ACKed. This feature should only be used if the UL PHY is not operational.
+    pdsch_active: true                    # Optional BOOLEAN (true). Enables the PDSCH of the UE. Supported: [false, true].
+    pusch_active: true                    # Optional BOOLEAN (true). Enables the PUSCH of the UE. Supported: [false, true].
+    cqi: 15                               # Optional UINT (15). Sets the Channel Quality Information to be forwarded to the test UE. Supported: [1 - 15].
+    pmi: 0                                # Optional UINT (0). Sets the Precoder Matrix Indicator to be forwarded to test UE. Supported: [0 - 3].
+    ri: 1                                 # Optional UINT (1). Sets the Rank Indicator to be forwarded to the test UE. Supported: [1 - 4].
+    i_1_1: 0                              # Optional INT (0). Sets the Precoder Matrix codebook index "i_1_1" to be forwarded to test UE, in the case of more than 2 antennas. Supported: [0 - 7].
+    i_1_3: 0                              # Optional INT (0). Sets the Precoder Matrix codebook index "i_1_3" to be forwarded to test UE, in the case of more than 2 antennas. Supported: [0 - 1].
+    i_2: 0                                # Optional INT (0). Sets the Precoder Matrix codebook index "i_2" to be forwarded to test UE, in the case of more than 2 antennas. Supported: [0 - 3].
+
+remote_control:
+  enabled: false                        # Optional BOOLEAN (false). Enables the remote control feature. Supported: [false, true].
+  bind_addr: 127.0.0.1                  # Optional TEXT (127.0.0.1). Sets the local IP address to bind for remote control. Supported: IPv4 address.
+  port: 8001                            # Optional UINT (8001). Sets the port where the remote control server listens for incoming connections. Supported: [0 - 65535].

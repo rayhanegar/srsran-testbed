@@ -1,0 +1,21 @@
+gnb_id: 411                         # Optional UINT (411). Sets the numerical ID associated with the gNB.
+gnb_id_bit_length:                  # Optional UNIT. Sets the bit length of the gnb_id above. Format: integer between [22 - 32]
+
+gnb_du_id: 0                        # Optional UINT (0). Sets the gNB DU ID. Supported: [0 - 68719476735].
+
+cells:                              # Optional TEXT. Sets the cell configuration on a per cell basis, overwriting the default configuration defined by cell_cfg. Contains a list of cells, each with parameters that overwrite the default config. This can only be 
+                                    # set via the configuration file. For more information see the relevant example configuration file: gnb_custom_cell_properties.yml. Each list entry should begin with "-".
+  - pci: 1                          # Optional TEXT. Override the PCI defined by the default cell in cell_cfg.
+    dl_arfcn: 536020                # Optional TEXT. Set the ARFCN for the above PCI. Note, this must match the value used in the cell_cfg section.
+  - pci: 2                          # Optional TEXT. Set the PCI of the second cell.
+    dl_arfcn: 532020                # Optional TEXT. Set the ARFCN of the second cell. Note, this must match the value used in the cell_cfg section. 
+
+cell_cfg:
+  pci: 1                                # Required UINT (1). Sets the Physical Cell ID. Supported: [0-1007].
+  sector_id: 0                          # Optional UINT (0). Sets the Sector ID (4-14 bits). This value is concatenated with the gNB Id to form the NR Cell Identity (NCI). If not specified, a unique value for the DU is automatically derived. Supported: [0 - 16383].
+  dl_arfcn: 536020                      # Required UINT (536020). Sets the Downlink ARFCN.
+  band: auto                            # Optional TEXT (auto). Sets the NR band being used for the cell. If not specified, will be set automatically based on ARFCN. Supported: all release 17 bands.
+  plmn: 00101                           # Required TEXT (00101). Sets the Public Land Mobile Network code. Format: 7-digit PLMN code containing MCC & MNC.
+  tac: 7                                # Required UINT (7). Sets the Tracking Area Code.
+  enabled: true                         # Optional BOOLEAN (true). Sets whether the cell is enabled on start-up or not. Supported: [false, true].
+  

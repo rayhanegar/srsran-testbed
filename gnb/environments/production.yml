@@ -1,0 +1,13 @@
+log:
+  all_level: warning
+  filename: /var/log/srsRAN/gnb.log  # Optional TEXT (/var/log/srsRAN/gnb.log). Sets the log file path.
+
+expert_execution:
+  threads:
+    upper_phy:
+      nof_dl_threads: 8                  # Optional UINT (1). Sets the number of DL threads for upper PHY. Supported: [1 - 4].
+    lower_phy:
+      execution_profile: quad           # Optional TEXT (single). Sets the execution profile for lower PHY. Supported: [single, dual, quad].
+
+remote_control:
+  enabled: false

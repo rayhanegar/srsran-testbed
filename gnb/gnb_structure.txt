@@ -1,0 +1,19 @@
+srsran-configs/
+├── base/
+│   ├── cell-identity.yml           # PCI, ARFCN, PLMN, TAC
+│   ├── l1-physical.yml            # PHY layer (corresponds to RU in split 7.2)
+│   ├── l2-mac-scheduler.yml       # MAC/Scheduler (DU low in split 7.2)
+│   ├── l2-rlc-pdcp.yml           # RLC/PDCP (DU high in split 7.2)
+│   └── qos-profiles.yml           # 5QI definitions
+├── deployment/
+│   ├── hardware-sdr.yml           # SDR hardware
+│   ├── hardware-ofh.yml           # O-RAN fronthaul
+│   └── network-topology.yml       # IP addresses, interfaces
+├── features/
+│   ├── slicing-enabled.yml        # Network slicing
+│   ├── ai-ran-hooks.yml          # AI/ML integration
+│   └── monitoring-full.yml        # Observability
+└── environments/
+    ├── development.yml            # Dev overrides
+    ├── staging.yml               # Test environment
+    └── production.yml            # Production settings

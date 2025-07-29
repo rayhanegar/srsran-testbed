@@ -1,0 +1,27 @@
+cu_cp:
+  # AMF (Access and Mobility Management Function) Connection on N2 interface
+  amf:
+    no_core: false                        # Optional BOOLEAN. Setting to true allows the gNB to run without a core. Supported: [0, 1].
+    amf_reconnection_retry_time: 1000     # Optional INT (1000). Sets the time in ms to wait before retrying to connect to the AMF after a failed connection attempt.
+    addr:                                 # Required TEXT. Sets the IP address or hostname of the AMF. Format: IPV4 or IPV6 IP address.
+    port: 38412                           # Optional UINT. Sets the AMF port. Format: integer between [20000 - 40000].
+    bind_addr: 127.0.0.1                  # Optional TEXT. Sets local IP address to bind for N2 interface. Format: IPV4 or IPV6 IP address.
+    bind_interface: auto                  # Optional TEXT. Sets network device to bind for N2 interface. Format: IPV4 or IPV6 IP address.
+    sctp_rto_initial: 120                 # Optional INT. Sets the initial retransmission timeout when creating the SCTP connection.
+    sctp_rto_min: 120                     # Optional INT. Sets the minimum retransmission timeout for the SCTP connection.
+    sctp_rto_max: 500                     # Optional INT. Sets the maximum retransmission timeout for the SCTP connection.
+    sctp_init_max_attempts: 3             # Optional INT. Sets the maximum retransmission attempts for the initial SCTP connection.
+    sctp_max_init_timeo: 500              # Optional INT. Sets the maximum retransmission timeout for the initial SCTP connection.
+    sctp_hb_interval: 30000               # Optional INT (30000). SCTP heartbeat interval in milliseconds (-1 to use system default). 
+    sctp_assoc_max_retx: 10               # Optional INT (10). SCTP association max retransmissions (-1 to use system default). 
+    sctp_nodelay: false                   # Optional BOOLEAN. Setting to true allows the gNB to send SCTP messages as soon as possible without any Nagle-like algorithm. Supported: [false, true].
+    supported_tracking_areas:             # Required TEXT. Sets the list of tracking areas supported by this AMF.
+      -                                     # Supported TAC #1
+        tac: 7                                # Required UINT. Sets the Tracking Area Code.
+        plmn_list:                            # Required TEXT. Sets the list of PLMN items supported for this Tracking Area.
+          -                                     # Supported PLMN #1
+            plmn: "00101"                         # Required TEXT. Sets the Public Land Mobile Network code. Format: 7-digit PLMN code containing MCC & MNC.
+            tai_slice_support_list:               # Required TEXT. Sets the list of TAI slices for this PLMN item.
+              -                                     # Supported TAI Slice(s) for PLMN
+                sst: 1                                # Optional UINT. Sets the Slice Service Type. Supported: [0 - 255].
+                sd:                                   # Optional UINT. Sets the Service Differentiator. Supported: [0-16777215].                              # Optional UINT. Sets the Service Differentiator. Supported: [0-16777215].

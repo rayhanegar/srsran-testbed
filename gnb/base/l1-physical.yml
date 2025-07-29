@@ -1,0 +1,81 @@
+cell_cfg:
+  # Basic Physical Params
+  common_scs: 15                        # Required UINT (15). Sets the subcarrier spacing in KHz to be used by the cell. Supported: [15, 30].
+  channel_bandwidth_MHz: 20             # Required UINT (20). Sets the channel Bandwidth in MHz, the number of PRBs will be derived from this. Supported: [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100].
+  nof_antennas_dl: 1                    # Optional UINT (1). Sets the number of antennas for downlink transmission. Supported: [1, 2, 4].
+  nof_antennas_ul: 1                    # Optional UINT (1). Sets the number of antennas for uplink transmission. Supported: [1, 2, 4].
+  q_rx_lev_min: -70                     # Optional INT (-70). Sets the required minimum received RSRP level for cell selection/re-selection, in dBm. Supported: [-70 - -22].
+  q_qual_min: -20                       # Optional INT (-20). Sets the required minimum received RSRQ level for cell selection/re-selection, in dB. Supported: [-43 - -12].
+  pcg_p_nr_fr1: 10                      # Optional INT (10). Sets the maximum total TX power to be used by the UE in this NR cell group across in FR1. Supported: [-30 - +23].
+  
+  # SSB (Synchronous Signal Block)
+  ssb:
+    ssb_period: 10                          # Optional UINT (10). Sets the period of SSB scheduling in milliseconds. Supported: [5, 10, 20].
+    ssb_block_power_dbm: -16                # Optional INT (-16). Sets the SS PBCH block power in dBm. Supported: [-60 - +50].
+    pss_to_sss_epre_db: 0                   # Optional UINT (0). Sets the Synchronization Signal Block Primary Synchronization Signal to Secondary Synchronization Signal Energy Per Resource Element ratio in dB. Supported: [0, 3].
+
+  # PRACH (Physical Random Access Channel)
+  prach:
+    prach_config_index:                     # Optional UINT. Sets the PRACH configuration index. If not set, the value is derived, so that the PRACH fits in an UL slot. Supported: [0 - 255].
+    prach_root_sequence_index: 1            # Optional UINT (1). Sets the PRACH Roost Sequence Index (RSI), which determines the Zadoff-Chu (ZC) sequence used. Supported: [0 - 837]. If the PRACH configuration index is larger than 86, you cannot set a PRACH RSI of more than 137.
+    zero_correlation_zone: 0                # Optional UINT (0). Sets the Zero Correlation Zone, which determines the size of the cyclic shift and the number of preamble sequences which can be generated from each Root Sequence Index. Supported: [0 - 15].
+    fixed_msg3_mcs: 0                       # Optional UINT (0). Sets a fixed Msg3 MCS. Supported: [0 - 28].
+    max_msg3_harq_retx: 4                   # Optional UINT (4). Sets the maximum number of Msg3 HARQ retransmissions. Supported: [0 - 4].
+    total_nof_ra_preambles:                 # Optional TEXT. Sets the number of different PRACH preambles. Supported: [1 - 64].
+    cfra_enabled: false                     # Optional BOOLEAN (false). Enables Contention Free Random Access (CFRA). If enabled, total_nof_ra_preambles must be lower than 64. Supported: [false, true].
+    prach_frequency_start:                  # Optional INT. Set Offset of lowest PRACH transmission occasion in frequency domain respective to PRB 0, in PRBs. Supported: [0 - (MAX_NOF_PRB - 1)].
+    preamble_rx_target_pw: -100             # Optional INT (-100). Sets the Target power level at the network receiver side, in dBm. Supported: multiples of 2 within range [-202, -60].
+    preamble_trans_max: 7                   # Optional UINT (7). Sets the max number of RA preamble transmissions performed before declaring a failure. Supported: [3, 4, 5, 6, 7, 8, 10, 20, 50, 100, 200].
+    power_ramping_step_db: 4                # Optional UINT (4). Sets the power ramping steps for PRACH. Supported: [0, 2, 4 , 6].
+    ports: 0                                # Optional UINT (0). Sets the list of atenna ports. Expected value is a UINT string of antenna port IDs.
+    nof_ssb_per_ro: 1                       # Optional FLOAT (1). Sets the number of SSBs per RACH occasion. Supported: [1/8, 1/4, 1/2, 1, 2, 4, 8, 16].
+    nof_cb_preambles_per_ssb: 4             # Optional UINT (4). Sets the number of contention based preambles per SSB. Supported: [1 - 64].
+    ra_resp_window:                         # Optional UINT. Sets the RA-response window length in number of slots. Supported: {1, 2, 4, 8, 10, 20, 40, 80}.
+
+  # SRS (Sounding Reference Signal) 
+  srs:
+    srs_period_ms:                          # Optional FLOAT. Sets the periodic SRS period in ms. The SRS period needs to be compatible with the subcarrier spacing. Supported: {1,2,2.5,4,5,8,10,16,20,32,40,64,80,160,320,640,1280,2560}. 
+    srs_max_nof_sym_per_slot: 2             # Optional UINT (2). Sets the number of symbols for UL slot that are reserved for the SRS cell resources. Supprted: [1 - 6]. 
+    srs_nof_sym_per_resource: 1             # Optional UINT (2). Sets the number of symbols per SRS resource. Supported: {1,2,4}. 
+    srs_tx_comb: 4                          # Optional UINT (4). Sets the SRS TX comb size. Supported: {2, 4}.
+    srs_cyclic_shift_reuse: 1               # Optional UINT (1). Sets the SRS cyclic shift reuse factor. It needs to be compatible with the TX comb and number of UL antenna ports. Supported: {1,2,3,4,6}.
+    srs_sequence_id_reuse: 1                # Optional UINT (1). Sets the reuse factor for the SRS sequence ID. Supported: {1,2,3,5,6,10,15,30}. 
+  
+  # CSI (Channel State Information)
+  csi:
+    csi_rs_enabled: true                    # Optional BOOLEAN (true). Enables CSI-RS resources and CSI reporting. Supported: [false, true].
+    csi_rs_period: 20                       # Optional UINT (20). Sets the CSI-RS period in milliseconds. Supported: [10, 20, 40, 80].
+    meas_csi_rs_slot_offset:                # Optional TEXT Sets the slot offset of first CSI-RS resource used for measurement.
+    tracking_csi_rs_slot_offset:            # Optional TEXT. Sets the slot offset of the first CSI-RS slot used for tracking.
+    zp_csi_rs_slot_offset:                  # Optional TEXT. Sets the slot offset of the ZP CSI-RS resources.
+    pwr_ctrl_offset: 0                      # Optional INT (0). Sets the power offset of PDSCH RE to NZP CSI-RS RE in dB. Supported: [-8 - 15].
+
+  # TDD (Time Division Duplex) Configuration
+  tdd_ul_dl_cfg:
+    dl_ul_tx_period: 10                     # Optional INT (10). Sets the TDD pattern periodicity in slots. The combination of this value and the chosen numerology must lead to a TDD periodicity of 0.5, 0.625, 1, 1.25, 2, 2.5, 3, 4, 5 or 10 milliseconds. Supported: [2 - 80].
+    nof_dl_slots: 6                         # Optional INT (6). Number of consecutive full Downlink slots. Supported: [0-80].
+    nof_dl_symbols: 8                       # Optional INT (8). Number of Downlink symbols at the beginning of the slot following full Downlink slots. Supported: [0-13].
+    nof_ul_slots: 3                         # Optional INT (3). Number of consecutive full Uplink slots. Supported: [0 - 80].
+    nof_ul_symbols: 0                       # Optional INT (0). Number of Uplink symbols at the end of the slot preceding the first full Uplink slot. Supported: [0-13].
+    pattern2:
+      dl_ul_tx_period: 10                       # Optional INT (10). Sets the TDD pattern periodicity in slots. The combination of this value and the chosen numerology must lead to a TDD periodicity of 0.5, 0.625, 1, 1.25, 2, 2.5, 3, 4, 5 or 10 milliseconds. Supported: [2 - 80].
+      nof_dl_slots: 6                           # Optional INT (6). Number of consecutive full Downlink slots. Supported: [0-80].
+      nof_dl_symbols: 8                         # Optional INT (8). Number of Downlink symbols at the beginning of the slot following full Downlink slots. Supported: [0-13]
+      nof_ul_slots: 3                           # Optional INT (3). Number of consecutive full Uplink slots. Supported: [0 - 80].
+      nof_ul_symbols: 0                         # Optional INT (0). Number of Uplink symbols at the end of the slot preceding the first full Uplink slot. Supported: [0-13].
+  
+  # Paging Configuration
+  paging:
+    pg_search_space_id: 1                   # Optional UINT (1). Sets the SearchSpace to use for Paging. Supported: [false, true].
+    default_pg_cycle_in_rf: 128             # Optional UINT (128). Sets the default Paging cycle in nof. Radio Frames. Supported: [32,64,128,256].
+    nof_pf_per_paging_cycle: oneT           # Optional TEXT (oneT). Sets the number of paging frames per DRX cycle. Supported: [oneT, halfT, quarterT, oneEighthT, oneSixteethT].
+    pf_offset: 0                            # Optional UINT (0). Sets the paging frame offset. Supported: [0 - (nof_pf_per_paging_cycle - 1)].
+    nof_po_per_pf: 1                        # Optional UINT (1). Sets the number of paging occasions per paging frame. Supported: [1, 2, 4].
+  
+  # DRX (Discontinuous Reception) Configuration
+  drx:
+    on_duration_timer: 10                   # Optional UINT (10). Minimum duration in milliseconds that the UE stays in active mode, when DRX is configured. Supported: {1,2,3,4,5,6,8,10,20,30,40,50,60,80,100,200,300,400,500,600,800,1000,1200,1600}
+    inactivity_timer: 0                     # Optional UINT (0). Duration in milliseconds that the UE stays active after PDCCH reception, when DRX is configured. Supported: {0,1,2,3,4,5,6,8,10,20,30,40,50,60,80,100,200,300,500,750,1280,1920,2560}
+    retx_timer_dl: 0                        # Optional UINT (0). Maximum duration in slots until a DL ReTX is received by the UE, when DRX is configured. Supported: {0,1,2,4,6,8,16,24,33,40,64,80,96,112,128,160,320}
+    retx_timer_ul: 0                        # Optional UINT (0). Maximum duration in slots until a grant for UL ReTX is received by the UE, when DRX is configured. Supported: {0,1,2,4,6,8,16,24,33,40,64,80,96,112,128,160,320}
+    long_cycle: 0                           # Optional UINT (0). Duration in milliseconds between UE DRX long cycles. The value 0 is used to disable DRX. Supported: {10,20,32,40,60,64,70,80,128,160,256,320,512,640,1024,1280,2048,2560,5120,10240} OR {0}

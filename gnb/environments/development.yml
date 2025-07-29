@@ -1,0 +1,12 @@
+log:
+  all_level: debug
+
+expert_execution:
+  threads:
+    upper_phy:
+      nof_dl_threads: 2
+    lower_phy:
+      execution_profile: dual
+
+remote_control:
+  enabled: true

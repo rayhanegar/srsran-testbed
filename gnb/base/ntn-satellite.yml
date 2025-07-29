@@ -1,0 +1,25 @@
+ntn:
+  cell_specific_koffset: 0              # Optional INT (0). Sets the cell-specific k-offset to be used for NTN. Supported: [0 - 1023].
+  ntn_ul_sync_validity_dur: 5           # Optional INT. Sets the NTN UL sync validity duration in milliseconds. Supported: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 120, 180, 240, 900].  
+
+  epoch_time:
+    sfn: 0                                # Optional INT (0). Sets the SFN part. Supported: [0 - 1023].
+    subframe_number: 0                    # Optional INT (0). Sets the sub-frame number part. Supported: [0 - 9].
+  ta_info: 
+    ta_common: 0                          # Optional INT (0). Sets the common Timing Advance value. Supported: [0 - 66485757].
+    ta_common_drift: 0                    # Optional INT (0). Sets the common Timing Advance drift value. Supported: [-257303 - 257303].
+    ta_common_drift_variant: 0            # Optional INT (0). Sets the common Timing Advance drift variant value. Supported: [0 - 28949].
+  ephemeris_info_ecef:
+    pos_x: 0                              # Optional INT (0). Sets the X position of the satellite. Supported: [-67108864 - 67108863].
+    pos_y: 0                              # Optional INT (0). Sets the Y position of the satellite. Supported: [-67108864 - 67108863].
+    pos_z: 0                              # Optional INT (0). Sets the Z position of the satellite. Supported: [-67108864 - 67108863].
+    vel_x: 0                              # Optional INT (0). Sets the X velocity of the satellite. Supported: [-32768 - 32767].
+    vel_y: 0                              # Optional INT (0). Sets the Y velocity of the satellite. Supported: [-32768 - 32767].
+    vel_z: 0                              # Optional INT (0). Sets the Z velocity of the satellite. Supported: [-32768 - 32767].
+  ephemeris_orbital:
+    semi_major_axis: 0                    # Optional FLOAT (0). Sets the semi-major axis of the satellite. Supported: [0 - 1000000000].
+    eccentricity: 0                       # Optional FLOAT (0). Sets the eccentricity of the satellite.
+    periapsis: 0                          # Optional FLOAT (0). Sets the periapsis of the satellite.
+    longitude: 0                          # Optional FLOAT (0). Sets the longitude of the satellites angle of ascending node.
+    inclination: 0                        # Optional FLOAT (0). Sets the inclination of the satellite.
+    mean_anomaly: 0                       # Optional FLOAT (0). Sets the mean anomaly of the satellite.

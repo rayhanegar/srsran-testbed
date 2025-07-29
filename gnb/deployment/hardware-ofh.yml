@@ -1,0 +1,66 @@
+ru_ofh:
+# Many of the following values are optional as they have default values. In practice, all of the following parameters should be defined by the user, as they will need
+# to be configured specifically for the RU being used. Failing to configure this parameters correctly may result in the RU failing to connect correctly to the DU.
+  gps_alpha: 0                          # Optional FLOAT (0). Sets the GPS alpha. Supported: [0 - 1.2288e+07].
+  gps_beta: 0                           # Optional INT (0). Sets the GPS beta. Supported: [-32768 - +32767].
+  ru_bandwidth_MHz: 100                 # Required UINT (0). Sets the channel bandwidth in MHz. Supported: [5,10,15,20,25,30,40,50,60,70,80,90,100].
+  t1a_max_cp_dl: 500                    # Optional INT (500). Sets T1a maximum value for downlink control-plane. Supported: [0 - 1960].
+  t1a_min_cp_dl: 258                    # Optional INT (258). Sets T1a minimum value for downlink control-plane. Supported: [0 - 1960].
+  t1a_max_cp_ul: 500                    # Optional INT (500). Sets T1a maximum value for uplink control-plane. Supported: [0 - 1960].
+  t1a_min_cp_ul: 258                    # Optional INT (258). Sets T1a minimum value for uplink control-plane. Supported: [0 - 1960].
+  t1a_max_up: 300                       # Optional INT (300).Sets T1a maximum value for uer-plane. Supported: [0 - 1960].
+  t1a_min_up: 85                        # Optional INT (85). Sets T1a minimum value for user-plane. Supported: [0 - 1960].
+  ta4_max: 300                          # Optional UINT (300). Sets the Ta4 maximum value for User-Plane. Supported: [0 - 1960].
+  ta4_min: 85                           # Optional UINT (85). Sets the Ta4 maximum value for User-Plane. Supported: [0 - 1960].
+  is_prach_cp_enabled: true             # Optional BOOLEAN (true). Sets PRACH control-plane enabled flag. Supported: [false, true].
+  ignore_ecpri_seq_id: false            # Optional BOOLEAN (false). Sets whether or not to ignore eCPRI sequence ID field value. Supported [false, true].
+  ignore_ecpri_payload_size: false      # Optional BOOLEAN (false). Sets whether or not to ignore eCPRI payload size field value. Supported [false, true].
+  ignore_prach_start_symbol: false      # Optional BOOLEAN (false). Sets whether or not to ignore PRACH start symbol in PRAACH U-Plane Packets. Supported [false, true].
+  warn_unreceived_ru_frames: after_traffic_detection       # Optional TEXT (after_traffic_detection). Sets whether or not to send a warning when there are unreceived Radio Unit frames. Supported never, always, after_traffic_detection].
+  compr_method_ul: bfp                  # Optional TEXT (bfp). Sets the uplink compression method. Supported: [none, bfp, bfp selective, block scaling, mu law, modulation, modulation selective].
+  compr_bitwidth_ul: 9                  # Optional UINT (9). Sets the uplink compression bit width. Supported: [1 - 16].
+  compr_method_dl: bfp                  # Optional TEXT (bfp). Sets the downlink compression method. Supported: [none, bfp, bfp selective, block scaling, mu law, modulation, modulation selective].
+  compr_bitwidth_dl: 9                  # Optional UINT (9). Sets the downlink compression bit width. Supported: [1 - 16].
+  compr_method_prach: bfp               # Optional TEXT (bfp). Sets the PRACH compression method. Supported: [none, bfp, bfp selective, block scaling, mu law, modulation, modulation selective].
+  compr_bitwidth_prach: 9               # Optional UINT (9). Sets the PRACH compression bit width. Supported [1 - 16].
+  enable_ul_static_compr_hdr: true      # Optional BOOLEAN (true). Uplink static compression header enabled flag. Supported: [false, true].
+  enable_dl_static_compr_hdr: true      # Optional BOOLEAN (true). Downlink static compression header enabled flag. Supported: [false, true].
+  iq_scaling: 0.35                      # Optional FLOAT (0.35). Sets the IQ scaling factor. Supported: [0 - 20].
+  cells:                                # Optional TEXT. Sets the hardware specific cell configuration on a per cell basis.
+    -                                       # Cell 1 - set custom configuration for each cell
+      network_interface: enp1s0f0             # Optional TEXT (enp1s0f0). Sets the ethernet network interface name for the RU or PCIe identifier when using DPDK. Format: a string, e.g. [interface_name].
+      ru_mac_address: 70:b3:d5:e1:5b:06       # Optional TEXT (70:b3:d5:e1:5b:06). Sets the RU MAC address. Format: a string, e.g. [AA:BB:CC:DD:11:22:33].
+      du_mac_address: 00:11:22:33:00:77       # Optional TEXT (00:11:22:33:00:77). Sets the DU MAC address. Format: a string, e.g. [AA:BB:CC:DD:11:22:33].
+      vlan_tag_cp: 1                          # Optional UINT (1). Sets the VLAN tag value for C-Plane.
+      vlan_tag_up: 1                          # Optional UINT (1). Sets the VLAN tag value for U-Plane.
+      prach_port_id: [4]                   # Optional UINT (4). Sets the RU PRACH eAxC port ID. Supported: [0 - 65535].
+      dl_port_id: [0, 1]                   # Optional UINT (0, 1). Sets the RU downlink eAxC port ID. Format: vector containing all DL eXaC ports, e.g. [0, ...\ , N].
+      ul_port_id: [0]                      # Optional UINT (0). Sets the RU uplink eAxC port ID. Supported: [0 - 65535].
+      ru_bandwidth_MHz: 100                   # Required UINT (0). Sets the channel bandwidth in MHz. Supported: [5,10,15,20,25,30,40,50,60,70,80,90,100].
+      t1a_max_cp_dl: 500                      # Optional INT (500). Sets T1a maximum value for downlink control-plane. Supported: [0 - 1960].
+      t1a_min_cp_dl: 258                      # Optional INT (258). Sets T1a minimum value for downlink control-plane. Supported: [0 - 1960].
+      t1a_max_cp_ul: 500                      # Optional INT (500). Sets T1a maximum value for uplink control-plane. Supported: [0 - 1960].
+      t1a_min_cp_ul: 258                      # Optional INT (258). Sets T1a minimum value for uplink control-plane. Supported: [0 - 1960].
+      t1a_max_up: 300                         # Optional INT (300).Sets T1a maximum value for uer-plane. Supported: [0 - 1960].
+      t1a_min_up: 85                          # Optional INT (85). Sets T1a minimum value for user-plane. Supported: [0 - 1960].
+      ta4_max: 300                            # Optional UINT (300). Sets the Ta4 maximum value for User-Plane. Supported: [0 - 1960].
+      ta4_min: 85                             # Optional UINT (85). Sets the Ta4 maximum value for User-Plane. Supported: [0 - 1960].
+      is_prach_cp_enabled: true               # Optional BOOLEAN (true). Sets PRACH control-plane enabled flag. Supported: [false, true].
+      is_dl_broadcast_enabled: false          # Optional BOOLEAN (false). Sets downlink broadcast enabled flag. Supported: [false, true].
+      ignore_ecpri_seq_id: false              # Optional BOOLEAN (false). Sets whether or not to ignore eCPRI sequence ID field value. Supported [false, true].
+      ignore_ecpri_payload_size: false        # Optional BOOLEAN (false). Sets whether or not to ignore eCPRI payload size field value. Supported [false, true].
+      ignore_prach_start_symbol: false        # Optional BOOLEAN (false). Sets whether or not to ignore PRACH start symbol in PRAACH U-Plane Packets. Supported [false, true].
+      warn_unreceived_ru_frames: always       # Optional TEXT (always). Sets whether or not to send a warning when there are unreceived Radio Unit frames. Supported never, always, after_traffic_detection].
+      compr_method_ul: bfp                    # Optional TEXT (bfp). Sets the uplink compression method. Supported: [none, bfp, bfp selective, block scaling, mu law, modulation, modulation selective].
+      compr_bitwidth_ul: 9                    # Optional UINT (9). Sets the uplink compression bit width. Supported: [1 - 16].
+      compr_method_dl: bfp                    # Optional TEXT (bfp). Sets the downlink compression method. Supported: [none, bfp, bfp selective, block scaling, mu law, modulation, modulation selective].
+      compr_bitwidth_dl: 9                    # Optional UINT (9). Sets the downlink compression bit width. Supported: [1 - 16].
+      compr_method_prach: bfp                 # Optional TEXT (bfp). Sets the PRACH compression method. Supported: [none, bfp, bfp selective, block scaling, mu law, modulation, modulation selective].
+      compr_bitwidth_prach: 9                 # Optional UINT (9). Sets the PRACH compression bit width. Supported [1 - 16].
+      enable_ul_static_compr_hdr: true        # Optional BOOLEAN (true). Uplink static compression header enabled flag. Supported: [false, true].
+      enable_dl_static_compr_hdr: true        # Optional BOOLEAN (true). Downlink static compression header enabled flag. Supported: [false, true].
+      iq_scaling: 0.35                        # Optional FLOAT (0.35). Sets the IQ scaling factor. Supported: [0 - 20].
+
+# FAPI Configuration
+fapi:
+  l2_nof_slots_ahead: 0                 # Optional UINT (0). Sets the number of slots the L2 is running ahead of the L1. Supported: [0 - 5].

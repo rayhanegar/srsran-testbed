@@ -1,0 +1,3 @@
+qos:                                # Optional TEXT. Configures RLC and PDCP radio bearers on a per 5QI basis. This can only be set via the configuration file. Each list entry should begin with "-".
+
+srbs:                               # Optional TEXT. Configures signaling radio bearers. Each list entry should begin with "-".

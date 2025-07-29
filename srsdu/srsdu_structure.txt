@@ -1,0 +1,17 @@
+srsdu/
+├── base/
+│   ├── du-identity.yml              # DU ID, cell identity
+│   ├── l2-mac-scheduler.yml         # MAC, PDCCH, PDSCH, PUSCH, PUCCH
+│   ├── l2-rlc-high.yml             # RLC, high-level protocol handling
+│   └── l1-phy-interface.yml         # PHY interface, radio params
+├── deployment/
+│   ├── f1-interfaces.yml            # F1-C, F1-U to CU
+│   ├── hardware-sdr.yml             # USRP B200 specific config
+│   └── execution-config.yml         # CPU, threads, buffers
+├── features/
+│   ├── e2-du-integration.yml        # E2 interface for DU
+│   ├── ntn-satellite.yml           # Non-terrestrial networks
+│   └── monitoring-full.yml          # Logs, metrics, PCAP
+└── environments/
+    ├── development.yml              # Dev settings
+    └── production.yml               # Prod optimizations
