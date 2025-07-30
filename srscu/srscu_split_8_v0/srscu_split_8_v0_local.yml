@@ -20,3 +20,22 @@ cu_up:
     socket:                               # Define UDP/IP socket(s) for F1-U interface.
       -                                   # Socket 1
         bind_addr: 127.0.10.1             # Sets the address that the F1-U socket will bind to.
+
+# Metrics configuration
+metrics: 
+  addr: 127.0.0.1                       # Optional TEXT:IPV4 (127.0.0.1). Sets the metrics address. Supported: IPV4 address.
+  port: 55555                           # Optional UINT. Sets the metrics UPD port. Supported: [0 - 65535].
+  enable_json: true                    # Optional BOOLEAN (false). Enable JSON metrics reporting
+  enable_log: true                     # Optional BOOLEAN (false). Enable log metrics reporting
+  enable_verbose: true                 # Optional BOOLEAN (false). Enable extended detail metrics reporting
+
+  layers:
+    enable_app_usage: true               # Optional BOOLEAN (false). Enable application usage metrics
+    enable_e1ap: true                    # Optional BOOLEAN (false). Enable E1AP metrics
+    enable_pdcp: true                    # Optional BOOLEAN (false). Enable PDCP metrics
+    enable_cu_up_executor: true          # Optional BOOLEAN (false). Whether to log CU-UP executor metrics
+
+  perioidicity:
+    app_usage_report_period: 1000         # Optional UINT (1000). Application resource usage metrics report period in milliseconds
+    cu_cp_report_period: 1000             # Optional UINT (1000). CU-CP metrics report period in milliseconds
+    cu_up_report_period: 1000             # Optional UINT (1000). CU-UP metrics report period in milliseconds
