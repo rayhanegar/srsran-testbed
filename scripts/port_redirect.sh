@@ -32,7 +32,7 @@ add_redirect() {
     if sudo iptables -t nat -A $RULE; then
         echo "✓ Port redirection added successfully"
         echo "  gNB traffic to port 2152 will be redirected to port 2153"
-        echo "  Use this configuration with gnb_local.yml"
+        echo "  Use this configuration with gnb_local.yml, srscu_split_8_v0_local.yml, and srsdu_split_8_v0_local.yml"
     else
         echo "✗ Failed to add port redirection"
         return 1
@@ -49,7 +49,7 @@ remove_redirect() {
     if sudo iptables -t nat -D $RULE; then
         echo "✓ Port redirection removed successfully"
         echo "  gNB will use standard port 2152"
-        echo "  Use this configuration with gnb.yml (remote Open5GS)"
+        echo "  Use this configuration with gnb.yml, srscu_split_8_v0.yml, and srsdu_split_8_v0.yml (remote Open5GS)"
     else
         echo "✗ Failed to remove port redirection"
         return 1

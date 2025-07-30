@@ -1,7 +1,7 @@
 ## This file is part of srsRAN's srsDU Split 8.0 Implementation v0
 ## This file is being run in conjunction with srsCU's Split 8.0 Implementation v0
-## Open5GS Running Remotely.
-## Run srsran-testbed/scripts/port_redirect.sh --remove before using this file.
+## Open5GS Running Locally.
+## Run srsran-testbed/scripts/port_redirect.sh --add before using this file.
 
 f1ap:
   cu_cp_addr: 10.34.4.245                    # The address of CU-CP

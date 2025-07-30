@@ -1,11 +1,11 @@
 ## This file is part of srsRAN's srsCU Split 8.0 Implementation v0
 ## This file is being run in conjunction with srsDU's Split 8.0 Implementation v0
-## Open5GS Running Remotely.
+## Open5GS Running Locally.
 ## Run srsran-testbed/scripts/port_redirect.sh --add before using this file.
 
 cu_cp:
   amf:
-    addr: 10.34.4.244                     # The address or hostname of the AMF.
+    addr: 10.34.4.245                     # The address or hostname of the AMF.
     bind_addr: 10.34.4.245                # A local IP that the gNB binds to for traffic from the AMF.
     supported_tracking_areas:             # Configure the TA associated with the CU-CP
       - tac: 7
