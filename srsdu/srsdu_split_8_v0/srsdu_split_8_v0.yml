@@ -1,0 +1,29 @@
+## This file is part of srsRAN's srsDU Split 8.0 Implementation v0
+## This file is being run in conjunction with srsCU's Split 8.0 Implementation v0
+
+f1ap:
+  cu_cp_addr: 10.34.4.245                    # The address of CU-CP
+  bind_addr: 10.34.4.245
+
+f1u:
+  socket:
+    -
+      bind_addr: 10.34.4.245
+
+ru_sdr:
+  device_driver: uhd
+  device_args: type=b200,num_recv_frames=64,num_send_frames=64
+  srate: 23.04
+  otw_format: sc12
+  tx_gain: 80
+  rx_gain: 40
+
+# Cell configuration: refer to gnb/gnb_cell_identity.txt
+cell_cfg:
+  dl_arfcn: 368500
+  band: 3
+  channel_bandwidth_MHz: 20
+  common_scs: 15
+  plmn: "00101"
+  tac: 7
+  pci: 1

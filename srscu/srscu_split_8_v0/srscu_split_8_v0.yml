@@ -1,0 +1,21 @@
+## This file is part of srsRAN's srsCU Split 8.0 Implementation v0
+## This file is being run in conjunction with srsDU's Split 8.0 Implementation v0
+
+cu_cp:
+  amf:
+    addr: 10.34.4.244                     # The address or hostname of the AMF.
+    bind_addr: 10.34.4.245                # A local IP that the gNB binds to for traffic from the AMF.
+    supported_tracking_areas:             # Configure the TA associated with the CU-CP
+      - tac: 7
+        plmn_list:
+          - plmn: "00101"
+            tai_slice_support_list:
+              - sst: 1
+  f1ap:
+    bind_addr: 10.34.4.245                # Configure the F1AP bind address, this will enable the CU-cp to connect to the DU
+
+cu_up:
+  f1u:
+    socket:                               # Define UDP/IP socket(s) for F1-U interface.
+      -                                     # Socket 1
+        bind_addr: 10.34.4.245                  # Sets the address that the F1-U socket will bind to.
