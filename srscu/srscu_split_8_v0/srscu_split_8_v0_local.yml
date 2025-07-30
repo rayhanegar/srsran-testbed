@@ -26,8 +26,8 @@ metrics:
   addr: 127.0.0.1                       # Optional TEXT:IPV4 (127.0.0.1). Sets the metrics address. Supported: IPV4 address.
   port: 55555                           # Optional UINT. Sets the metrics UPD port. Supported: [0 - 65535].
   enable_json: true                    # Optional BOOLEAN (false). Enable JSON metrics reporting
-  enable_log: true                     # Optional BOOLEAN (false). Enable log metrics reporting
-  enable_verbose: true                 # Optional BOOLEAN (false). Enable extended detail metrics reporting
+  enable_log: false                     # Optional BOOLEAN (false). Enable log metrics reporting
+  enable_verbose: false                 # Optional BOOLEAN (false). Enable extended detail metrics reporting
 
   layers:
     enable_app_usage: true               # Optional BOOLEAN (false). Enable application usage metrics
