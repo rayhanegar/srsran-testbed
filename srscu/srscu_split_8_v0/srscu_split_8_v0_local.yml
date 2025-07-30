@@ -34,8 +34,3 @@ metrics:
     enable_e1ap: true                    # Optional BOOLEAN (false). Enable E1AP metrics
     enable_pdcp: true                    # Optional BOOLEAN (false). Enable PDCP metrics
     enable_cu_up_executor: true          # Optional BOOLEAN (false). Whether to log CU-UP executor metrics
-
-  perioidicity:
-    app_usage_report_period: 1000         # Optional UINT (1000). Application resource usage metrics report period in milliseconds
-    cu_cp_report_period: 1000             # Optional UINT (1000). CU-CP metrics report period in milliseconds
-    cu_up_report_period: 1000             # Optional UINT (1000). CU-UP metrics report period in milliseconds
